@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+   BOL Verification
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,296 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Bill of Lading</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+<!-- Animated Searchbar -->
+<ion-searchbar animated placeholder="Typein BOLNo/TransactionID" id="searchEle"></ion-searchbar>
+
+    </ion-col>
+    <ion-col>
+<ion-button (click)="getBOLData();">Search</ion-button>
+
+    </ion-col>
+  </ion-row>
+
+</ion-grid>
+<div id="container" style="display:none;">
+<ion-card>
+
+    <div class="invoice" id="invoice">
+      <div class="invoice-body" style="padding: 50px;">
+
+          <table class="table table-bordered table-condensed BOL_data" >
+              <tbody>
+                  <tr>
+                      <td style="font-size: small;">BILL OF LADING FOR COMBINED TRANSPORT SHIPMENT
+                          OR PORT TO PORT SHIPMENT</td>
+                      <td>
+                          B/L N0.:<label id="BOL_bl_no">{{ postList.id}}</label>
+                      </td>
+                  </tr> <tr>
+                  <td>
+                      <!-- <div> -->
+                      <label> Shipper</label>
+                      <br>
+                      <label id="BOL_shipper" > {{ postList.attributes.entity.legalName.name }}</label>
+                      <!-- <br> -->
+                      <label id="BOL_shipperaddress" style= "font-weight:normal">{{postList.attributes.entity.legalAddress.addressLines[0]}}</label>
+                      <!-- <br> -->
+                      <!-- BUSINESS CENTER,NO.206-208 GUANGYUAN MIDDLE -->
+                      <br>
+                      <label id="BOL_shcntry" style= "font-weight:normal">{{ postList.attributes.entity.legalAddress.country }}</label>
+                      <!-- ROAD,GUANGZHOU,GUANGDONG,CHINA -->
+                      <!-- </div> -->
+                  </td>
+
+                  <td rowspan="2">
+
+                          <br>
+                          <label style="font-size: x-large;padding-bottom: 3px;">Bill of
+                              Lading</label>
+                              <br>
+                          <label style="font-size:x-small;text-align:justify;">
+                              RECEIVED by the carrier from the Shipper in apparent good order
+                              and condition(unless
+                              otherwise noted herein)the total number or quantity of containers or
+                              other packages
+                              or units indicated in the
+                              box below entitled "Number(in words) and kind of
+                              packages,
+                              description of goods said to contain" for
+                              Carriage subject to all the terms hereof(including
+                              the terms on
+                              the reverse hereof) from the Place of
+                              Receipt or the port
+                              of loading,whichever is applicable,to the
+                              Port of Discharge or the Place of
+                              Delivery,whichever is applicable.One original Bill of Lading
+                              must be surrendered,duly endorsed,in
+                              exchange for the Goods.In acceptingthis Bill of Lading the
+                              Merchant expressly accepts and agrees
+                              to all its terms conditions whether printed,stamped or written
+                              or otherwise incorporated
+                              herein,notwithstanding the non-signing of this Bill of Lading by
+                              the Merchant.
+
+                              <br>
+                          </label>
+                          <!-- <br> -->
+                          <!-- <br> -->
+
+                  </td>
+                  </tr>
+                  <tr>
+                      <td><label>Consignee</label>
+                          <br>
+                          <label id="BOL_consignee">{{ postList.attributes.entity.legalName.name }}</label>
+                          <br>
+                          <label id="BOL_consigneeaddr" style= "font-weight:normal"></label>
+                              <!-- <br> -->
+                              <!-- BUSINESS CENTER,NO.206-208 GUANGYUAN MIDDLE -->
+                              <br>
+                              <label id="BOL_ConsigneeCntry" style= "font-weight:normal"></label>
+                              <!-- ROAD,GUANGZHOU,GUANGDONG,CHINA -->
+                      </td>
+
+
+                  </tr>
+
+                  <tr>
+                      <td>
+                          Notify party
+                          <br>
+                          <!-- GUANGZHOU JUNLIYE IMPORT AND EXPORT CO LTD -->
+                          <!-- <br> -->
+                          <label id="BOL_notifyparty" style= "font-weight:normal"> {{ postList.attributes.entity.status }}</label>
+                          <!-- ROOM B38,2ND FLOOR,NEWCENTURYAUTOMOBILE -->
+                          <br>
+                          <!-- BUSINESS CENTER,NO.206-208 GUANGYUAN MIDDLE -->
+                          <!-- <br> -->
+                          <!-- ROAD,GUANGZHOU,GUANGDONG,CHINA -->
+
+                      </td>
+
+                      <td>
+                          <label style="text-align:initial;font-size: small;padding:0px;">Place of
+                              Receipt*(Applicable only when this document is used as a Combined
+                              Transport Bill of Lading)</label>
+                          <br>
+                          <!-- JUNLIYE IMPORT AND EXPORT CO LTD -->
+                          <!-- <br> -->
+                          <label id="BOL_receiptplace" style= "font-weight:normal"> <b></b></label>
+                          <!-- ROOM B38,2ND FLOOR,NEWCENTURYAUTOMOBILE -->
+                          <br>
+                          <!-- BUSINESS CENTER,NO.206-208 GUANGYUAN MIDDLE -->
+                          <!-- <br> -->
+                          <!-- ROAD,GUANGZHOU,GUANGDONG,CHINA -->
+
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>Pre-Carrier:
+                          <br>
+                          <label id="BOL_precarrier" style= "font-weight:normal">-</label>
+                      </td>
+
+                      <td rowspan="4">
+                          <label style="font-size: small;padding:0px;">Place of
+                              Delivery*(Applicable only when this document is used as a Combined
+                              Transport Bill of Lading)</label>
+                          <br>
+                          <label id="BOL_deliveryplace" style= "font-weight:normal"> <b> </b></label>
+
+
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>Vessel and Voy.No.:
+                          <label id="BOL_vessel"> </label>
+                          <label id="BOL_voyno"> </label>
+
+                      </td>
+
+                  </tr>
+                  <tr>
+                      <td>Port of Loading
+                          <br>
+                          <label id="BOL_portloading" style= "font-weight:normal"> </label>
+                      </td>
+
+                  </tr>
+                  <tr>
+                      <td>Port of Discharge
+                          <br>
+                          <label id="BOL_portdischarging" style= "font-weight:normal"> </label>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td colspan="2" style="font-size:small;text-align: center;"> Particulars as
+                          declared by Shipper</td>
+                  </tr>
+              </tbody>
+          </table>
+
+          <table class="table table-bordered table-condensed" id="BOL_data_tb">
+              <thead>
+                  <tr>
+                      <th>Marks and No.s Container No.s</th>
+                      <th>Number (in words)and packages description of goods</th>
+                      <th>Gross weigh(kilos)t</th>
+                      <th>Measurement(CBM)</th>
+                  </tr>
+              </thead>
+              <tbody id="prod_list">
+                  <!-- <tr><td>WILLIAM CHAN SN1407 SINGAPORE C/NO.87-6</td>
+                  <td> </td>
+                  <td> </td>
+
+                  <td> </td>
+                      </tr> -->
+                      <!-- <tr>
+                      <td>SD</td>
+                      <td>DS</td>
+                      <td>DS</td>
+
+                      <td>DS</td>
+                  </tr> -->
+              </tbody>
+          </table>
+          <table class="table table-bordered table-condensed" id="other_BOL_data">
+              <tbody>
+                  <tr>
+                      <td colspan=4> <label>CTNR/SEAL/SIZE:</label>
+                      <label id="containerSealSize" style= "font-weight:normal"></label>
+                      </td>
+
+                  </tr>
+                  <tr>
+                      <td colspan=4> <label>Freight Charges  :</label>
+                      <label id="freightData"  style= "font-weight:normal"></label>
+                      </td>
+                  </tr>
+                  <tr><!--
+                      <td colspan="1"> <label>TOTAL:<label id="BOL_totalton"></label>  </label>
+                      </td> -->
+                      <td colspan="3"> <label>SHIPPED ON BOARD :
+                          <label id="BOL_shippeddt"></label> </label>
+                      </td>
+
+                  </tr>
+                  <tr>
+                      <td colspan="0">Total No.of Containers/Packages received by the Carrier :
+                          <br>
+                          <label id="BOL_totalcontainers" style= "font-weight:normal"></label>
+                      </td>
+                      <td colspan="1">Freight payable at
+                          <br>
+                          <label id="BOL_freightpayableat" style= "font-weight:normal"> </label>
+                      </td>
+                      <td colspan="3">
+                          Place and Date of Issue:
+                          <br>
+                          <label id="BOL_issuedplace" style= "font-weight:normal"> </label>,
+                          <label id="BOL_issuedt" style= "font-weight:normal"> </label>
+
+                      </td >
+
+
+                  </tr>
+                  <tr>
+                      <td>
+                          Movement<br>
+                          <label id="BOL_movement" style= "font-weight:normal"></label>
+                      </td>
+                      <td>
+                          Number of Orginal Bills of Lading <br>
+                          <label id="BOL_orgBOLno" style= "font-weight:normal"></label>
+
+                      </td>
+                      <td class="td" style="font-size:small;text-align: center;">IN WITNESS of the contract
+                          herein contained the number of
+                          original <br>stated opposite have been issued,one of which
+                          being accomplished,the other(s) to be view_products
+                      </td>
+                  </tr>
+                  <tr>
+                      <td rowspan="2" colspan="2">
+                          FORWARDING AGENT<br>
+                          <label id="BOL_foragent">PHOENIX SHIPPING PVT LTD</label>
+                          <br>
+                          <label id="BOL_foragentaddr">78 BUKIT BATOK</label>  <br>
+                          <label id="agentEmail" style= "font-weight:normal">SINGAPORE 655222</label>
+                          <label id="agentPhNo" style= "font-weight:normal"></label>
+
+                      </td>
+                      <td>
+                              Carrier Company <br>
+                              <label id="BOL_carriercompany" style= "font-weight:normal"></label>
+
+
+                      </td>
+                  </tr>
+                  <tr>
+                          <td>
+                                  Signatory Name<br>
+                                  <label id="BOL_signatoryname" style= "font-weight:normal"></label>
+
+
+                          </td>
+                      </tr>
+              </tbody>
+          </table>
+          <button class="btn btn-success" id="printbtn" onclick=PrintDiv() style="float:right">Print</button>
+          <br>
+
+      </div>
   </div>
+</ion-card>
+
+ </div>
 </ion-content>
