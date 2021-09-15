@@ -1,0 +1,414 @@
+<ion-header [translucent]="true" color="dark">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+   BOL Verification
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <!-- Animated Searchbar -->
+          <ion-searchbar animated placeholder="Typein BOLNo/TransactionID" (change)="getBOLData();"id="searchEle"></ion-searchbar>
+
+              </ion-col>
+              <!-- <ion-col>
+          <ion-button (click)="getBOLData();">
+            <ion-icon slot="icon-only" name="search"></ion-icon>
+          </ion-button>
+
+              </ion-col> -->
+       </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card id="bol" class="container" *ngIf="postList">
+    <!-- -->
+    <ion-grid >
+
+
+      <ion-row>
+        <ion-col>
+          <div style="font-size: small;">
+            BILL OF LADING FOR COMBINED TRANSPORT SHIPMENT
+            OR PORT TO PORT SHIPMENT</div>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" size-sm>
+          <div style="font-size: small;">
+           <!-- <div> -->
+             <ion-label> Shipper</ion-label>
+              <br>
+              <!-- <ion-label id="BOL_shipper" > -->
+                {{ postList.attributes.entity.legalName.name }},
+                <!-- SHYAM PRAKASH, -->
+                   {{ postList.attributes.entity.legalAddress.addressLines[0] }},
+              <!-- BUSINESS CENTER,NO.206-208 GUANGYUAN MIDDLE, -->
+                {{ postList.attributes.entity.legalAddress.country }}
+                <!-- ROAD,GUANGZHOU,GUANGDONG,CHINA -->
+
+              <!-- </ion-label> -->
+
+            <!-- <ion-label id="BOL_shipperaddress" style= "font-weight:normal">
+
+
+            </ion-label>
+
+            <ion-label id="BOL_shcntry" style= "font-weight:normal">
+
+
+            </ion-label> -->
+
+          </div>
+        </ion-col>
+        <ion-col size="6" size-sm>
+          <div>
+           <ion-label id="BOL_bl_no"> B/L N0.:
+
+            </ion-label>
+            <!-- BL8897667857 -->
+            BL{{ postList.id }}
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div>
+  <ion-label>
+    <h3>Bill of
+    Lading</h3></ion-label>
+
+ <ion-label class="ion-text-wrap" collapse="condense" style="font-size:x-small;text-align:justify;">
+              RECEIVED by the carrier from the Shipper in apparent good order
+              and condition(unless
+              otherwise noted herein)the total number or quantity of containers or
+              other packages
+              or units indicated in the
+              box below entitled "Number(in words) and kind of
+              packages,
+              description of goods said to contain" for
+              Carriage subject to all the terms hereof(including
+              the terms on
+              the reverse hereof) from the Place of
+              Receipt or the port
+              of loading,whichever is applicable,to the
+              Port of Discharge or the Place of
+              Delivery,whichever is applicable.One original Bill of Lading
+              must be surrendered,duly endorsed,in
+              exchange for the Goods.In acceptingthis Bill of Lading the
+              Merchant expressly accepts and agrees
+              to all its terms conditions whether printed,stamped or written
+              or otherwise incorporated
+              herein,notwithstanding the non-signing of this Bill of Lading by
+              the Merchant.
+
+          </ion-label>
+
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-label>Consignee</ion-label>
+            <br>
+                            <!-- <ion-label id="BOL_consignee"> -->
+                                <!-- BUSINESS CENTER,NO.206-208 GUANGYUAN MIDDLE -->
+
+                              {{ postList.attributes.entity.legalName.name }}
+                            <!-- </ion-label> -->
+                            <br>
+                            <!-- <ion-label id="BOL_consigneeaddr" style= "font-weight:normal"> -->
+                                <!-- BUSINESS CENTER,NO.206-208 GUANGYUAN MIDDLE -->
+                   {{ postList.attributes.entity.legalAddress.addressLines[0] }},
+
+                                <br>
+                            <!-- </ion-label> -->
+                                <!-- <ion-label id="BOL_ConsigneeCntry" style= "font-weight:normal"> -->
+                                Country name here
+                                <!-- </ion-label> -->
+
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <div>
+           <ion-label>
+            Notify party
+           </ion-label>
+           (If any)
+            <!-- <br> -->
+            <!-- <br> -->
+            <ion-label id="BOL_notifyparty" style= "font-weight:normal">
+              <!-- {{ postList.attributes.entity.status }} -->
+            </ion-label>
+            <!-- GUANGZHOU JUNLIYE IMPORT AND EXPORT CO LTD, -->
+
+            <!-- ROOM B38,2ND FLOOR,NEWCENTURYAUTOMOBILE -->
+            <br>
+            Shyam Prasad,
+            {{ postList.attributes.entity.legalAddress.addressLines[0] }},
+
+            <!-- BUSINESS CENTER,NO.206-208 GUANGYUAN MIDDLE -->
+            <!-- <br> -->
+            <!-- ROAD,GUANGZHOU,GUANGDONG,CHINA -->
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-label style="text-align:initial;font-size: small;padding:0px;">Place of
+              Receipt*</ion-label>(Applicable only when this document is used as a Combined
+              Transport Bill of Lading)
+          <br>
+          <ion-label id="BOL_receiptplace" style= "font-weight:normal"> <b>
+          Singapore
+          </b>
+          </ion-label>
+
+          </div>
+        </ion-col>
+        <ion-col col-6="">
+          <div>
+            <ion-label>
+              Pre-Carrier
+            </ion-label>
+            <br>
+            <ion-label id="BOL_precarrier" style= "font-weight:normal">-</ion-label>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-label style="font-size: small;padding:0px;">Place of
+              Delivery*</ion-label>(Applicable only when this document is used as a Combined
+              Transport Bill of Lading)
+          <br>
+          <ion-label id="BOL_deliveryplace" style= "font-weight:normal"> <b> </b></ion-label>
+
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6="">
+          <div>
+            <ion-label>
+              Vessel and Voy.No.:
+            </ion-label>
+                            <ion-label id="BOL_vessel"> </ion-label>
+                            <ion-label id="BOL_voyno"> </ion-label>
+
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-label>
+            Port of Loading
+            </ion-label>
+                            <br>
+                            <ion-label id="BOL_portloading" style= "font-weight:normal"> </ion-label>
+
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-label>
+            Port of Discharge
+            </ion-label>
+                            <br>
+                            <ion-label id="BOL_portdischarging" style= "font-weight:normal"> </ion-label>
+
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col>
+          Particulars as
+          declared by Shipper
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div>
+
+            <table style="border:solid 1px;">
+              <thead>
+                <tr>
+                    <th>Marks and No.s Container No.s</th>
+                    <th>Number (in words)and packages description of goods</th>
+                    <th>Gross weight(kilos)</th>
+                    <th>Measurement(CBM)</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2</td>
+                <td>32</td>
+                <td>123kg</td>
+                <td>234</td>
+
+                </tr>
+            </tbody>
+              </table>
+
+          </div>
+        </ion-col>
+        <!-- <ion-col >
+          <div>
+          <ion-label>
+            Marks and No.s Container No.s
+          </ion-label>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-label>
+              Number (in words)and packages description of goods
+            </ion-label>
+          </div>
+           </ion-col>
+        <ion-col>
+          <ion-label>
+            Gross weight(kilos)
+
+          </ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>
+            Measurement(CBM)
+          </ion-label>
+        </ion-col> -->
+       </ion-row>
+      <ion-row>
+        <ion-col>
+          <div><ion-label>CTNR/SEAL/SIZE:</ion-label></div>
+        </ion-col>
+        <ion-col >
+          <div>display No.s Here</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div><ion-label>Freight Charges</ion-label></div>
+        </ion-col>
+        <ion-col >
+          <div>Freight Here</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div><ion-label>SHIPPED ON BOARD</ion-label></div>
+        </ion-col>
+        <ion-col >
+          <div>onboard date Here</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div><ion-label>Total No.of Containers/Packages received by the Carrier</ion-label></div>
+          1
+        </ion-col>
+        <ion-col>
+          <div><ion-label>
+            Freight payable at
+          </ion-label>
+          <br>
+        Singapore
+        </div>
+        </ion-col>
+        <ion-col>
+          <div><ion-label>
+            Place and Date of Issue
+          </ion-label>
+          <br>
+       place & date here
+        </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div><ion-label>Movement</ion-label>
+          <br>
+          Ship
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-label>
+              Number of Orginal Bills of Lading
+            </ion-label>
+            <br>
+            1
+          </div>
+        </ion-col>
+         </ion-row>
+         <ion-row>
+          <ion-col>
+            <div>
+              <ion-label class="ion-justify-content-center" style="font-size:small;text-align: center;">
+                IN WITNESS of the contract
+                herein contained the number of
+                original <br>stated opposite have been issued,one of which
+                being accomplished,the other(s) to be view_products
+              </ion-label>
+            </div>
+          </ion-col>
+
+        </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col>
+          <div>
+            <ion-label>
+              FORWARDING AGENT
+            </ion-label><br>
+            <label id="BOL_foragent">PHOENIX SHIPPING PVT LTD</label>
+            <br>
+            <label id="BOL_foragentaddr">78 BUKIT BATOK</label>  <br>
+            <label id="agentEmail" style= "font-weight:normal">SINGAPORE 655222</label>
+            <label id="agentPhNo" style= "font-weight:normal"></label>
+
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-row>
+              <ion-col>
+                <div>
+                  <ion-label>
+                    Carrier Company
+                  </ion-label> <br>
+                  <label id="BOL_carriercompany" style= "font-weight:normal">
+                  Company Name Here
+                  </label>
+
+                </div>
+              </ion-col>
+              </ion-row>
+              <ion-row>
+              <ion-col>
+                <div>
+                  <ion-label>
+                    Signatory Name
+                  </ion-label><br>
+                  <label id="BOL_signatoryname" style= "font-weight:normal">
+                  Signatory Company Name
+                  </label>
+
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  </ion-content>
