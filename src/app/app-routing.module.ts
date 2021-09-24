@@ -14,6 +14,18 @@ const routes: Routes = [
   {
     path: 'search',
     loadChildren: () => import('./search-bol/search-bol.module').then( m => m.SearchBolPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'bollog',
+    loadChildren: () => import('./bollog/bollog.module').then( m => m.BOLlogPageModule)
   }
 ];
 

@@ -7,9 +7,9 @@
 		</ion-buttons>
 
 		<ion-buttons slot="end">
-			<ion-button class="bordered" fill="solid" color="light">
-				<ion-icon color="custom" name="notifications"></ion-icon>
-			</ion-button>
+			<!-- <ion-button class="bordered" fill="solid" color="light" (click)="presentModal()">
+				<ion-icon color="custom" name="notifications"></ion-icon>Login
+			</ion-button> -->
 		</ion-buttons>
 	</ion-toolbar>
 
@@ -20,7 +20,7 @@
     </ion-avatar>
 			<ion-label>
 				<p>Hello,</p>
-				<h3>UserName Here</h3>
+				<h3>{{ userDetails.firstName }}</h3>
 			</ion-label>
 
 	</ion-item>
@@ -81,7 +81,7 @@
           <ion-col size="7">
             <ion-label>
 							<h4>Search BOL</h4>
-							<h6>Google Drive/Docs</h6>
+							<h6>Click to view BOL Info</h6>
 						</ion-label>
           </ion-col>
           <ion-col size="2">
@@ -92,8 +92,29 @@
         </ion-row>
       </ion-grid>
     </ion-item>
-
-        <ion-item lines="none">
+    <ion-item lines="none" (click)="redirecttoBOLLog()">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="3">
+            <ion-button color="light" fill="clear">
+              <ion-icon slot="icon-only" name="list"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="7">
+            <ion-label>
+							<h4>Check Logs</h4>
+							<h6>Click to view logs</h6>
+						</ion-label>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button color="light" fill="clear">
+              <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+ <!-- <ion-item lines="none">
       <ion-grid>
         <ion-row class="ion-align-items-center">
           <ion-col size="3">
@@ -104,7 +125,7 @@
           <ion-col size="7">
             <ion-label>
 							<h4>Scan QR</h4>
-							<h6>Dropbox/Videos</h6>
+							<h6>Click to Scan Qr</h6>
 						</ion-label>
           </ion-col>
           <ion-col size="2">
@@ -114,7 +135,8 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-item>
+    </ion-item> -->
+
 
   </div>
 

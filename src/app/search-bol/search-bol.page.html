@@ -70,11 +70,11 @@
         </ion-col>
         <ion-col size="6" size-sm>
           <div>
-           <ion-label id="BOL_bl_no"> B/L N0.:
+           <ion-label > B/L N0.:
 
             </ion-label>
             <!-- BL8897667857 -->
-            BL{{ postList.id }}
+           <label id="BOL_bl_no">BOL{{ postList.id }}</label>
           </div>
         </ion-col>
       </ion-row>
@@ -408,6 +408,12 @@
           </div>
         </ion-col>
 
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button *ngIf="!bolStatus"(click)="approve()">APPROVE</ion-button>
+          </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>

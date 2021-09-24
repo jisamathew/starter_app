@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Logs</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding=''>
+  <ion-card>
+    <div class="center">
+
+    </div>
+
+    <form>
+
+      <ion-list>
+
+        <ion-item>
+          <ion-label >BOLNo</ion-label>
+          <ion-input [(ngModel)]="bolNo" autocomplete="off" name="BOLNO" id="name" type="email" ></ion-input>
+        </ion-item>
+
+       <br>
+
+      </ion-list>
+      <ion-button expand="block" share="round" color="warning" (click)="search()">Search</ion-button>
+    </form>
+  </ion-card>
+  <ion-card>
+    <table >
+      <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>UserName</th>
+           <th>Status</th>
+        </tr>
+        <tr *ngFor="let logCatalog of logValues">
+          <td>{{ logCatalog.Date }}</td>
+          <td>{{ logCatalog.Time }}</td>
+          <td>{{ logCatalog.firstName }} {{ logCatalog.lastName}}</td>
+          <td>{{ logCatalog.Status }}</td>
+
+
+
+          </tr>
+      </table>
+      <!-- <ion-grid class="ion-margin">
+        <ion-row>
+          <ion-col>Date</ion-col>
+          <ion-col>Time</ion-col>
+          <ion-col>UserName</ion-col>
+          <ion-col>Status</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let student of logValues; index as i">
+          <ion-col>{{ i + 1 }}</ion-col>
+          <ion-col>{{ student.Date }}</ion-col>
+          <ion-col>{{ student.Time }}</ion-col>
+          <ion-col>{{ student.firstName }}</ion-col>
+          <ion-col>{{ student.Status }}</ion-col>
+
+        </ion-row>
+      </ion-grid> -->
+  </ion-card>
+
+</ion-content>
